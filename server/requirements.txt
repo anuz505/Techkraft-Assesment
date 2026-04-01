@@ -1,0 +1,24 @@
+fastapi[standard]
+uvicorn
+sqlalchemy[asyncio]
+asyncpg
+psycopg2-binary
+alembic
+redis
+pydantic
+pydantic-settings
+email-validator
+python-dotenv
+typing-extensions
+flake8
+python-jose[cryptography]
+passlib[argon2]
+pwdlib
+
+
+# test
+pytest
+httpx
+faker
+factory-boy
+pytest-asyncio
