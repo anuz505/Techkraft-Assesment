@@ -4,6 +4,10 @@ import SignInPage from '@/pages/SignInPage'
 import SignUpPage from '@/pages/SignUpPage'
 import DashboardPage from '@/pages/DashboardPage'
 import ProtectedRoute from '@/components/auth/ProtectedRoute'
+import PropertiesPage from '@/pages/PropertiesPage'
+import PropertyDetailPage from '@/pages/PropertyDetailPage'
+import FavoritesPage from '@/pages/FavoritesPage'
+import ProtectedLayout from '@/components/layout/ProtectedLayout'
 function App() {
 
   return (
@@ -13,7 +17,12 @@ function App() {
       <Route path="/signup" element={<SignUpPage />} />
 
       <Route element={<ProtectedRoute />}>
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route element={<ProtectedLayout />}>
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/properties" element={<PropertiesPage />} />
+          <Route path="/properties/:propertyId" element={<PropertyDetailPage />} />
+          <Route path="/favorites" element={<FavoritesPage />} />
+        </Route>
       </Route>
 
       <Route path="*" element={<Navigate to="/signin" replace />} />

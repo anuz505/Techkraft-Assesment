@@ -12,13 +12,22 @@ function DashboardPage() {
   }
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-4xl flex-col items-start justify-center gap-6 p-6 sm:p-10">
-      <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">TechKraft</p>
-      <h1 className="text-3xl font-semibold">Welcome, {user?.username}</h1>
-      <p className="text-muted-foreground">
-        You are signed in as {user?.email} with role {user?.role}.
-      </p>
-      <Button onClick={handleLogout}>Log out</Button>
+    <main className="mx-auto flex w-full max-w-7xl flex-col gap-6 p-6 sm:p-10">
+      <section className="rounded-2xl border bg-card p-6 sm:p-8">
+        <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">Dashboard</p>
+        <h1 className="mt-3 text-3xl font-semibold">Welcome back, {user?.username}</h1>
+        <p className="mt-2 text-muted-foreground">You are signed in as {user?.email}</p>
+
+        <div className="mt-6 flex flex-wrap gap-2">
+          <Button type="button" onClick={() => navigate("/properties")}>Next: Go to properties</Button>
+          <Button type="button" variant="outline" onClick={() => navigate("/favorites")}>My favorites</Button>
+          <Button type="button" variant="outline" onClick={handleLogout}>Log out</Button>
+        </div>
+      </section>
+
+      <div className="rounded-2xl border border-dashed p-6 text-muted-foreground">
+        Use the Next button to start browsing properties, then filter by status, state, and price.
+      </div>
     </main>
   )
 }
