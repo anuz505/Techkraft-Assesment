@@ -189,7 +189,6 @@ function PropertiesPage() {
     <main className="mx-auto flex w-full max-w-7xl flex-col gap-6 p-6 sm:p-10">
       <div>
         <h1 className="text-3xl font-semibold">Properties</h1>
-        <p className="text-muted-foreground">Find listings fast with search and quick popover filters.</p>
       </div>
 
       {isAdmin ? (

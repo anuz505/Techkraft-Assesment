@@ -10,10 +10,7 @@ function SignIn() {
         <h1 className="mt-3 text-4xl font-semibold leading-tight text-balance">
           Assessment Project
         </h1>
-        <p className="mt-4 max-w-md text-muted-foreground">
-          This is a assessment project sign in page.
-        </p>
-        <span className='text-xs mt-1 text-muted-foreground'>This UI is pulled from shadcn UI component library</span>
+        <span className='text-xs mt-1 text-muted-foreground'>Most of the UI components are pulled from shadcn UI component library for this application.</span>
       </section>
 
       <section className="flex items-center justify-center p-6 sm:p-10 lg:p-16">
