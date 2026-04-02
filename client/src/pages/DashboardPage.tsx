@@ -26,7 +26,10 @@ function DashboardPage() {
       </section>
 
       <div className="rounded-2xl border border-dashed p-6 text-muted-foreground">
-        Use the Next button to start browsing properties, then filter by status, state, and price.
+        Use the Next button to browse properties. Only admin accounts can add, edit, or delete properties.
+      </div>
+      <div className="rounded-2xl border border-dashed p-6 text-muted-foreground">
+        Only admin accounts can add, edit, or delete properties.
       </div>
     </main>
   )

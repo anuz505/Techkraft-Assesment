@@ -6,6 +6,9 @@ import type { Property } from "@/types/property"
 
 interface PropertyCardProps {
   property: Property
+  onEdit?: (property: Property) => void
+  onDelete?: (property: Property) => void
+  deleteDisabled?: boolean
 }
 
 function formatPrice(value: string) {
@@ -21,7 +24,7 @@ function formatPrice(value: string) {
   }).format(numeric)
 }
 
-function PropertyCard({ property }: PropertyCardProps) {
+function PropertyCard({ property, onEdit, onDelete, deleteDisabled = false }: PropertyCardProps) {
   return (
     <Card className="h-full overflow-hidden">
       <div className="relative h-44 w-full bg-muted">
@@ -54,9 +57,26 @@ function PropertyCard({ property }: PropertyCardProps) {
         ) : null}
       </CardContent>
       <CardFooter className="flex items-center justify-between gap-2">
-        <Button asChild variant="outline">
-          <Link to={`/properties/${property.id}`}>View details</Link>
-        </Button>
+        <div className="flex flex-wrap gap-2">
+          <Button asChild variant="outline">
+            <Link to={`/properties/${property.id}`}>View details</Link>
+          </Button>
+          {onEdit ? (
+            <Button type="button" variant="outline" onClick={() => onEdit(property)}>
+              Edit
+            </Button>
+          ) : null}
+          {onDelete ? (
+            <Button
+              type="button"
+              variant="destructive"
+              onClick={() => onDelete(property)}
+              disabled={deleteDisabled}
+            >
+              Delete
+            </Button>
+          ) : null}
+        </div>
         <FavoriteToggle propertyId={property.id} />
       </CardFooter>
     </Card>

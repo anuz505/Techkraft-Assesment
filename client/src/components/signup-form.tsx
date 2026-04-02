@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { useAuth } from "@/contexts/AuthContext"
+import type { UserRole } from "@/types/auth"
 
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   const navigate = useNavigate()
@@ -24,6 +25,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [role, setRole] = useState<UserRole>("user")
   const [localError, setLocalError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -43,6 +45,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
         username: username.trim(),
         email: email.trim(),
         password,
+        role,
       })
       navigate("/dashboard", { replace: true })
     } finally {
@@ -93,6 +96,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                 onChange={(event) => setPassword(event.target.value)}
               />
             </Field>
+        
             <Field>
               <FieldLabel htmlFor="confirm-password">
                 Confirm Password
@@ -115,6 +119,18 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                 {error}
               </FieldDescription>
             ) : null}
+                <Field>
+              <FieldLabel htmlFor="role">Role</FieldLabel>
+              <select
+                id="role"
+                className="h-8 w-full rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                value={role}
+                onChange={(event) => setRole(event.target.value as UserRole)}
+              >
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </Field>
             <FieldGroup>
               <Field>
                 <Button type="submit" disabled={isSubmitting}>

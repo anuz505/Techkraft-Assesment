@@ -1,5 +1,10 @@
 import { apiClient } from "@/lib/api-client"
-import type { Property, PropertyListParams } from "@/types/property"
+import type {
+  Property,
+  PropertyCreateInput,
+  PropertyListParams,
+  PropertyUpdateInput,
+} from "@/types/property"
 
 function appendIfDefined(params: URLSearchParams, key: string, value: unknown) {
   if (value === undefined || value === null || value === "") {
@@ -26,4 +31,18 @@ export async function getProperties(params: PropertyListParams = {}): Promise<Pr
 export async function getPropertyById(propertyId: string): Promise<Property> {
   const { data } = await apiClient.get<Property>(`/properties/${propertyId}`)
   return data
+}
+
+export async function createProperty(input: PropertyCreateInput): Promise<Property> {
+  const { data } = await apiClient.post<Property>("/properties/", input)
+  return data
+}
+
+export async function updateProperty(propertyId: string, input: PropertyUpdateInput): Promise<Property> {
+  const { data } = await apiClient.put<Property>(`/properties/${propertyId}`, input)
+  return data
+}
+
+export async function deleteProperty(propertyId: string): Promise<void> {
+  await apiClient.delete(`/properties/${propertyId}`)
 }

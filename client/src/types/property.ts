@@ -27,3 +27,18 @@ export interface PropertyListParams extends PropertyFilters {
   skip?: number
   limit?: number
 }
+
+export interface PropertyUpsertInput {
+  title: string
+  address: string
+  state: string
+  price: number
+  bedrooms: number
+  bathrooms: number
+  image_url?: string | null
+  description?: string | null
+  status: PropertyStatus
+}
+
+export type PropertyCreateInput = PropertyUpsertInput
+export type PropertyUpdateInput = Partial<PropertyUpsertInput>
